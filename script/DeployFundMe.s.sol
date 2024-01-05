@@ -8,6 +8,8 @@ import {HelperConfig} from "./HelperConfig.s.sol";
 
 contract DeployFundMe is Script {
     FundMe fundMe;
+    
+    // By default, scripts are executed by calling the function named run, our entrypoint.
     function run() external returns(FundMe){
         
         HelperConfig helperConfig = new HelperConfig();

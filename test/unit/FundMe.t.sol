@@ -5,8 +5,8 @@ pragma solidity >=0.8.18 <0.9.0;
 // we can import console from Test.sol because it is already importing the console.sol in itself
 import {Test, console} from "forge-std/Test.sol";
 // import {console} from "forge-std/console.sol";
-import {FundMe} from "../src/FundMe.sol";
-import {DeployFundMe} from "../script/DeployFundMe.s.sol";
+import {FundMe} from "../../src/FundMe.sol";
+import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
 
 contract FundMeTest is Test {
     FundMe fundMe;
