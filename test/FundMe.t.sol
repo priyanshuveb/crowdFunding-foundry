@@ -125,4 +125,34 @@ contract FundMeTest is Test {
                 fundMe.getOwner().balance
         );
     }
+    function testWithdrawFromMultipleFundersCheaper() public {
+        // Arrange
+        uint160 numberOfFunders = 10;
+        uint160 startingFunderIndex = 1;
+        for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
+            hoax(address(i), SEND_VALUE);
+            fundMe.fund{value: SEND_VALUE}();
+        }
+        uint256 startingOwnerBalance = fundMe.getOwner().balance;
+        uint256 startingFundMeBalance = address(fundMe).balance;
+
+        // Act
+        uint256 gasStart = gasleft();
+        vm.txGasPrice(GAS_PRICE);
+        vm.startPrank(fundMe.getOwner());
+        fundMe.cheaperWithdraw();
+        vm.stopPrank();
+        uint256 gasEnd = gasleft();
+        uint256 gasUsed = gasStart - gasEnd;
+        console.log('gasUsed', gasUsed);
+
+        // Assert
+        assert(address(fundMe).balance == 0);
+        assert(
+            startingOwnerBalance + startingFundMeBalance ==
+                fundMe.getOwner().balance
+        );
+    }
 }
+
+
