@@ -12,7 +12,7 @@ contract IntegrationsTest is StdCheats, Test {
     FundMe public fundMe;
     HelperConfig public helperConfig;
 
-    uint256 public constant SEND_VALUE = 0.1 ether; // just a value to make sure we are sending enough!
+    uint256 public constant SEND_VALUE = 0.1 ether;
     uint256 public constant STARTING_USER_BALANCE = 10 ether;
     uint256 public constant GAS_PRICE = 1;
 
@@ -31,7 +31,9 @@ contract IntegrationsTest is StdCheats, Test {
     function testUserCanFundAndOwnerWithdraw() public {
         FundFundMe fundFundMe = new FundFundMe();
         fundFundMe.fundFundMe(address(fundMe));
-
+        address funder = fundMe.getFunder(0);
+        console.log('Funder is %s', funder);
+        console.log('gg', tx.origin.balance);
         WithdrawFundMe withdrawFundMe = new WithdrawFundMe();
         withdrawFundMe.withdrawFundMe(address(fundMe));
 
