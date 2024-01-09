@@ -23,7 +23,7 @@ contract FundMeTest is Test {
         // owner of the FundMe contract is FundMeTest contract
         // fundMe = new FundMe(0x694AA1769357215DE4FAC081bf1f309aDC325306);
         DeployFundMe deployFundMe = new DeployFundMe();
-        fundMe = deployFundMe.run();
+        (fundMe,) = deployFundMe.run();
         vm.deal(ALICE, INITIAL_BALANCE);
     }
 
