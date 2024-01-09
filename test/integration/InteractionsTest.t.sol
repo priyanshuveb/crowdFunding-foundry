@@ -33,7 +33,6 @@ contract IntegrationsTest is StdCheats, Test {
         fundFundMe.fundFundMe(address(fundMe));
         address funder = fundMe.getFunder(0);
         console.log('Funder is %s', funder);
-        console.log('gg', tx.origin.balance);
         WithdrawFundMe withdrawFundMe = new WithdrawFundMe();
         withdrawFundMe.withdrawFundMe(address(fundMe));
 

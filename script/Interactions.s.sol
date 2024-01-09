@@ -19,7 +19,6 @@ contract FundFundMe is Script {
         FundMe(mostRecentlyDeployed).fund{value: SEND_VALUE}();
         console.log('balance after', tx.origin.balance);
         vm.stopBroadcast();
-        console.log("Funded FundMe with %s", SEND_VALUE);
     }
 
     function run() external {
